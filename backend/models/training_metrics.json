@@ -1,0 +1,44 @@
+{
+  "training_timestamp": 1791443649.9032714,
+  "training_date": "2026-10-08 12:44:09",
+  "status": "OPERATIONAL_TRAINED",
+  "datasets_used": {
+    "kaggle_2026_csv": "phishing_email_detection_2026_dataset.csv (1,500 rows)",
+    "spam_corpus_csv": "spam_dataset.csv (1,000 rows)",
+    "nazario_phishing_mbox": "emails-phishing-nazario.mbox (2,279 real phishing emails)",
+    "enron_legal_mbox": "emails-enron-legal-mails.mbox (4,279 corporate legal emails)"
+  },
+  "tabular_email_model": {
+    "algorithm": "RandomForestClassifier(n_estimators=80, max_depth=8)",
+    "samples": 1500,
+    "accuracy": 100.0,
+    "precision": 100.0
+  },
+  "nlp_email_model": {
+    "algorithm": "TF-IDF (3500 n-grams) + LogisticRegression(C=1.5)",
+    "samples": 2597,
+    "accuracy": 99.81,
+    "precision": 100.0,
+    "recall": 99.62,
+    "vocab_size": 3500
+  },
+  "phishing_url_model": {
+    "algorithm": "RandomForestClassifier(n_estimators=100)",
+    "samples": 410,
+    "accuracy": 100.0,
+    "precision": 100.0,
+    "feature_importances": {
+      "Length": 0.2841,
+      "Entropy": 0.0404,
+      "Dots": 0.1652,
+      "Hyphens": 0.0404,
+      "Raw IP": 0.0077,
+      "HTTPS": 0.3885,
+      "High-Risk TLD": 0.0,
+      "@ Symbol": 0.0,
+      "Keywords": 0.0362,
+      "Typosquat": 0.0043,
+      "Digit Ratio": 0.0332
+    }
+  }
+}

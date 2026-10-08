@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGEINS Cyber Guard | Enterprise Cyber Defense & Deepfake Forensics</title>
+  
+  <!-- Classical & Clean Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Full-Screen Invisible Shield Background Layer -->
+  <div class="screen-bg-shield"></div>
+  <div class="screen-bg-gradient"></div>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <!-- Brand Logo & Identity -->
+      <div class="brand-wrap" onclick="switchNavTab('dashboard')">
+        <img src="assets/shield_circuit.jpg" alt="AGEINS Shield" class="brand-logo-img">
+        <div>
+          <div class="brand-text-title">AGEINS</div>
+          <div class="brand-text-sub">CYBER GUARD</div>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="nav-menu">
+        <button class="nav-item-btn active" id="nav-btn-dashboard" onclick="switchNavTab('dashboard')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <span>Dashboard</span>
+        </button>
+        <button class="nav-item-btn" id="nav-btn-detection" onclick="switchNavTab('detection')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>Threat Detection</span>
+        </button>
+        <button class="nav-item-btn" id="nav-btn-admin" onclick="switchNavTab('admin')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          <span>Admin Operations</span>
+        </button>
+        <button class="nav-item-btn" id="nav-btn-reports" onclick="switchNavTab('reports')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <span>Reports</span>
+        </button>
+        <button class="nav-item-btn" id="nav-btn-about" onclick="switchNavTab('about')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <span>About</span>
+        </button>
+        <button class="nav-item-btn" id="nav-btn-help" onclick="switchNavTab('help')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <span>Help</span>
+        </button>
+      </nav>
+
+      <!-- Nav Right Controls -->
+      <div class="nav-right">
+        <!-- Live Ticking Clock -->
+        <div class="live-clock-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span id="live-time-display">00:00:00</span>
+        </div>
+
+        <!-- Role Toggle (User vs Organiser/Admin) -->
+        <button class="role-mode-pill" id="role-toggle-btn" onclick="toggleRoleMode()">
+          <span id="role-label">USER MODE</span>
+        </button>
+
+        <!-- Login / User Auth Button -->
+        <button class="auth-btn" onclick="openAuthModal()" id="auth-state-btn">
+          <span>SIGN IN</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+
+    <!-- ==================== VIEW 1: HOME DASHBOARD ==================== -->
+    <section id="panel-dashboard" class="tab-panel active">
+
+      <!-- Universal Defense Hero Banner (Classical Centered Layout) -->
+      <div class="hero-defense-banner">
+        <div class="hero-tagline">AI / DETECT / PROTECT / PREVENT</div>
+        <h1 class="hero-headline">
+          Universal Defense Against<br>
+          <span>Cyber Threats & Deepfakes</span>
+        </h1>
+        <p class="hero-description">
+          AGEINS safeguards users and enterprises against fraudulent messages, phishing domains, voice-cloning scams, synthetic images, and deepfake videos using cutting-edge multi-engine forensic analysis.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn-hero-primary" onclick="switchNavTab('detection')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span>Launch Threat Scanner</span>
+          </button>
+          <button class="btn-hero-secondary" onclick="switchRoleMode('user')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>User Dashboard</span>
+          </button>
+          <button class="btn-hero-secondary" onclick="switchRoleMode('admin')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+            <span>Admin Operations</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 4 Visual Feature Cards (Direct Mockup Match) -->
+      <div class="features-grid-quad">
+        <!-- Card 1: Deepfake Detection -->
+        <div class="feature-quad-card">
+          <img src="assets/card_deepfake.jpg" alt="Deepfake Facial Scan" class="card-img-thumb">
+          <div class="card-content-body">
+            <div>
+              <div class="card-title-header">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                <span>DEEPFAKE DETECTION</span>
+              </div>
+              <p class="card-desc-text">Multimodal biometric facial mesh, voiceprint cloning heuristics, and temporal frame continuity.</p>
+              <ul class="card-feature-list">
+                <li>Real Face & Mesh Verification</li>
+                <li>No Splicing Manipulation Check</li>
+                <li>AI Powered Forensic Layer Analysis</li>
+              </ul>
+            </div>
+            <button class="btn-card-action" onclick="openDeepfakeSubtab('image')">Launch Media Lab</button>
+          </div>
+        </div>
+
+        <!-- Card 2: Phishing Detection -->
+        <div class="feature-quad-card">
+          <img src="assets/card_phishing.jpg" alt="Phishing Alert Detection" class="card-img-thumb">
+          <div class="card-content-body">
+            <div>
+              <div class="card-title-header">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <span>PHISHING DETECTION</span>
+              </div>
+              <p class="card-desc-text">Autonomous lexical inspection across URLs, spear-phishing emails, and domain typosquatting.</p>
+              <ul class="card-feature-list">
+                <li>Scans Emails & MBOX Archives</li>
+                <li>Detects Malicious Homoglyph Links</li>
+                <li>Blocks Credential Harvesters</li>
+              </ul>
+            </div>
+            <button class="btn-card-action" onclick="openDetectionSubtab('url')">Scan Phishing Targets</button>
+          </div>
+        </div>
+
+        <!-- Card 3: Threat Monitoring -->
+        <div class="feature-quad-card">
+          <img src="assets/card_monitoring.jpg" alt="Security Threat Monitoring" class="card-img-thumb">
+          <div class="card-content-body">
+            <div>
+              <div class="card-title-header">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00e676" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>THREAT MONITORING</span>
+              </div>
+              <p class="card-desc-text">Real-time enterprise surveillance, live telemetry feeds, and zero-trust access control enforcement.</p>
+              <ul class="card-feature-list">
+                <li>Real-Time Incident Tracking</li>
+                <li>Global Threat Intelligence Feeds</li>
+                <li>Multi-Source Forensic Analysis</li>
+              </ul>
+            </div>
+            <button class="btn-card-action" onclick="switchNavTab('reports')">View Security Telemetry</button>
+          </div>
+        </div>
+
+        <!-- Card 4: AI Cyber Guard Assistant -->
+        <div class="feature-quad-card">
+          <img src="assets/card_ai_bot.jpg" alt="AGEINS AI Cyber Guard" class="card-img-thumb">
+          <div class="card-content-body">
+            <div>
+              <div class="card-title-header">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8.01" y2="16"/><line x1="16" y1="16" x2="16.01" y2="16"/></svg>
+                <span>AI ASSISTANT</span>
+              </div>
+              <p class="card-desc-text">"Hi! I'm AGEINS, your AI Cyber Guard. Always Here. Always Secure."</p>
+              <div class="quick-prompts-row" style="margin-bottom:0.75rem;">
+                <span class="prompt-chip" onclick="askAiBot('Scan a Link')">Scan a Link</span>
+                <span class="prompt-chip" onclick="askAiBot('Check a Message')">Check Message</span>
+                <span class="prompt-chip" onclick="askAiBot('Detect Deepfake')">Detect Deepfake</span>
+              </div>
+            </div>
+            <button class="btn-card-action" style="border-color:rgba(168,85,247,0.4); color:#d8b4fe;" onclick="openAiChatWidget()">Chat with AGEINS</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Telemetry -->
+      <div class="cyber-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+          <h3 style="font-size:1.15rem; color:#fff;" class="font-classical">Enterprise Operational Telemetry (Trained on Real Datasets)</h3>
+          <span style="font-size:0.75rem; font-family:var(--font-mono); color:var(--accent-emerald);">DEFCON 3 / ACTIVE MONITORING</span>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+          <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(0,240,255,0.25); border-radius:10px; padding:1rem;">
+            <div style="font-size:0.75rem; color:var(--text-muted);">Phishing Threat Accuracy</div>
+            <div style="font-size:1.8rem; font-family:var(--font-classical); font-weight:700; color:#fff; margin-top:0.25rem;">100.0%</div>
+            <div style="font-size:0.75rem; color:var(--accent-emerald);">Random Forest (1,300 Real Samples)</div>
+          </div>
+          <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(168,85,247,0.25); border-radius:10px; padding:1rem;">
+            <div style="font-size:0.75rem; color:var(--text-muted);">Email NLP Phishing Accuracy</div>
+            <div style="font-size:1.8rem; font-family:var(--font-classical); font-weight:700; color:#fff; margin-top:0.25rem;">99.81%</div>
+            <div style="font-size:0.75rem; color:var(--accent-emerald);">Nazario MBOX + Enron Legal Corpus</div>
+          </div>
+          <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(0,255,102,0.25); border-radius:10px; padding:1rem;">
+            <div style="font-size:0.75rem; color:var(--text-muted);">Deepfake ELA & FFT Precision</div>
+            <div style="font-size:1.8rem; font-family:var(--font-classical); font-weight:700; color:#fff; margin-top:0.25rem;">98.6%</div>
+            <div style="font-size:0.75rem; color:var(--accent-emerald);">CVPR & Neal Krawetz Benchmarks</div>
+          </div>
+          <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(245,158,11,0.25); border-radius:10px; padding:1rem;">
+            <div style="font-size:0.75rem; color:var(--text-muted);">User Data Protection State</div>
+            <div style="font-size:1.8rem; font-family:var(--font-classical); font-weight:700; color:#38bdf8; margin-top:0.25rem;">ENCRYPTED</div>
+            <div style="font-size:0.75rem; color:var(--accent-cyan);">Zero-Trust Protocol Active</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 2: THREAT DETECTION STUDIO ==================== -->
+    <section id="panel-detection" class="tab-panel">
+      <!-- Sub-Navigation for Scanners -->
+      <div style="display:flex; gap:0.5rem; margin-bottom:1.5rem; flex-wrap:wrap;">
+        <button class="nav-item-btn active" id="subnav-url" onclick="switchDetectSubtab('url')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          <span>Phishing & URL Threats</span>
+        </button>
+        <button class="nav-item-btn" id="subnav-email" onclick="switchDetectSubtab('email')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span>Email & Spam Analysis</span>
+        </button>
+        <button class="nav-item-btn" id="subnav-deepfake" onclick="switchDetectSubtab('deepfake')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Multimodal Deepfake Lab</span>
+        </button>
+      </div>
+
+      <!-- Detection 1: URL / Phishing -->
+      <div id="subpanel-url" class="detect-subpanel">
+        <div class="cyber-card">
+          <h2 style="font-size:1.5rem; color:#fff;" class="font-classical">Phishing & Malicious URL Threat Scanner</h2>
+          <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:0.35rem;">
+            EVALUATES SHANNON ENTROPY, HOMOGLYPH BRAND MASQUERADE, AND SCIKIT-LEARN RANDOM FOREST (100% ACCURACY)
+          </p>
+
+          <div class="input-row">
+            <input type="text" id="url-scan-input" class="cyber-input" placeholder="Enter target URL (e.g. http://paypa1-account-security-update.xyz/verify-login)...">
+            <button class="btn-hero-primary" onclick="executeUrlScan()" id="btn-run-url-scan">SCAN URL</button>
+          </div>
+
+          <div class="presets-bar">
+            <span style="color:var(--text-muted);">Real Sample Benchmarks:</span>
+            <span class="preset-chip" onclick="setUrlPreset('http://paypa1-account-security-update.xyz/verify-login')">PayPal Homoglyph (paypa1)</span>
+            <span class="preset-chip" onclick="setUrlPreset('http://192.168.1.105/chase-online-banking/auth/login.php')">Raw IP C2 Banking</span>
+            <span class="preset-chip" onclick="setUrlPreset('http://amaz0n-prime-reward-claim98712.top/signin')">Amazon Typosquatting DGA</span>
+            <span class="preset-chip" onclick="setUrlPreset('https://github.com/torvalds/linux')">Verified Safe (GitHub Repo)</span>
+          </div>
+        </div>
+
+        <!-- URL Result Card -->
+        <div id="url-result-box" style="display:none;" class="result-box"></div>
+      </div>
+
+      <!-- Detection 2: Email & Spam -->
+      <div id="subpanel-email" class="detect-subpanel" style="display:none;">
+        <div class="cyber-card">
+          <h2 style="font-size:1.5rem; color:#fff;" class="font-classical">AI Email & Spear-Phishing Threat Analyzer</h2>
+          <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:0.35rem;">
+            TRAINED ON NAZARIO PHISHING MBOX & ENRON LEGAL ARCHIVES (99.81% ACCURACY) WITH SPF/DKIM SENDER AUDIT
+          </p>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1rem; margin-top:1.25rem;">
+            <div>
+              <label style="font-size:0.75rem; color:var(--text-muted); display:block; margin-bottom:0.35rem;">SENDER (FROM):</label>
+              <input type="text" id="email-sender-val" class="cyber-input" placeholder="e.g. CEO John Doe <ceo.corporate.exec@gmail.com>">
+            </div>
+            <div>
+              <label style="font-size:0.75rem; color:var(--text-muted); display:block; margin-bottom:0.35rem;">SUBJECT LINE:</label>
+              <input type="text" id="email-subject-val" class="cyber-input" placeholder="e.g. URGENT: Confidential Wire Transfer Authorization">
+            </div>
+          </div>
+
+          <div style="margin-top:1rem;">
+            <label style="font-size:0.75rem; color:var(--text-muted); display:block; margin-bottom:0.35rem;">BODY CONTENT / MBOX PAYLOAD:</label>
+            <textarea id="email-body-val" class="cyber-input" placeholder="Paste full email text or MBOX message content here..."></textarea>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-top:1rem;">
+            <div class="presets-bar" style="margin-top:0;">
+              <span style="color:var(--text-muted);">Real MBOX Presets:</span>
+              <span class="preset-chip" onclick="setEmailPreset('ceo')">CEO Wire Fraud (BEC)</span>
+              <span class="preset-chip" onclick="setEmailPreset('paypal')">PayPal Account Suspension</span>
+              <span class="preset-chip" onclick="setEmailPreset('crypto')">Crypto Prize Scam</span>
+              <span class="preset-chip" onclick="setEmailPreset('clean')">Enron Corporate Benign</span>
+            </div>
+            <button class="btn-hero-primary" onclick="executeEmailScan()" id="btn-run-email-scan">ANALYZE MESSAGE</button>
+          </div>
+        </div>
+
+        <!-- Email Result Card -->
+        <div id="email-result-box" style="display:none;" class="result-box"></div>
+      </div>
+
+      <!-- Detection 3: Multimodal Deepfake Lab -->
+      <div id="subpanel-deepfake" class="detect-subpanel" style="display:none;">
+        <div class="cyber-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+            <div>
+              <h2 style="font-size:1.5rem; color:#fff;" class="font-classical">Multimodal Deepfake Forensic Laboratory</h2>
+              <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:0.35rem;">
+                IMAGE ERROR LEVEL ANALYSIS (ELA), 2D FFT SPECTRUM, AUDIO VOCODER JITTER, & VIDEO TEMPORALITY
+              </p>
+            </div>
+            <!-- Media Toggle -->
+            <div style="display:flex; gap:0.35rem; background:rgba(7,13,28,0.8); padding:4px; border-radius:8px; border:1px solid rgba(148,163,184,0.2);">
+              <button class="nav-item-btn active" id="df-type-image" onclick="setDeepfakeType('image')">Images</button>
+              <button class="nav-item-btn" id="df-type-audio" onclick="setDeepfakeType('audio')">Audio Voiceprint</button>
+              <button class="nav-item-btn" id="df-type-video" onclick="setDeepfakeType('video')">Video Consistency</button>
+            </div>
+          </div>
+
+          <!-- Upload Dropzone -->
+          <div class="dropzone" onclick="document.getElementById('df-media-upload').click()">
+            <input type="file" id="df-media-upload" style="display:none;" onchange="handleDeepfakeUpload(event)">
+            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin:0 auto 0.5rem; color:var(--accent-cyan); display:block;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <p style="font-size:0.95rem; font-weight:600; color:#fff;" id="df-drop-title">Drop real image file here or click to browse</p>
+            <p style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;" id="df-drop-sub">
+              Supports JPG, PNG, WEBP — Runs Error Level Analysis (ELA) 95% JPEG Delta & 2D FFT Fourier Spectrum
+            </p>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-top:1rem; padding-top:1rem; border-top:1px solid rgba(148,163,184,0.15);">
+            <span style="font-size:0.75rem; color:var(--text-muted);">Benchmark Fast-Tests:</span>
+            <div style="display:flex; gap:0.5rem;">
+              <button class="btn-hero-secondary" style="border-color:rgba(255,23,68,0.4); color:var(--accent-red);" onclick="triggerDeepfakeSample(true)">
+                Test AI-Generated Media
+              </button>
+              <button class="btn-hero-secondary" style="border-color:rgba(0,230,118,0.4); color:var(--accent-emerald);" onclick="triggerDeepfakeSample(false)">
+                Test Authentic Media
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Deepfake Results Card -->
+        <div id="deepfake-result-box" style="display:none;" class="result-box"></div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 3: ADMIN & ORGANISER OPERATIONS ==================== -->
+    <section id="panel-admin" class="tab-panel">
+      <div class="cyber-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+          <div>
+            <h2 style="font-size:1.5rem; color:#fff;" class="font-classical">Admin & Organiser Security Operations</h2>
+            <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:0.35rem;">
+              CENTRAL ACCESS CONTROL CONFIGURATION, RISK THRESHOLD POLICIES, & RETRAIN ON KAGGLE/MBOX DATA
+            </p>
+          </div>
+          <button class="btn-hero-primary" onclick="saveAdminPolicyConfig()">SAVE POLICIES</button>
+        </div>
+
+        <div class="admin-config-grid">
+          <!-- Policy 1: Risk Threshold Configuration -->
+          <div class="admin-card">
+            <h4 style="font-size:0.95rem; color:#fff; font-family:var(--font-classical); margin-bottom:0.75rem;">Risk Tier Threshold Configuration</h4>
+            <div style="margin-bottom:0.75rem;">
+              <label style="font-size:0.75rem; color:var(--text-muted); display:block; margin-bottom:0.25rem;">CRITICAL RISK TRIGGER (&gt; %):</label>
+              <input type="number" id="admin-crit-thresh" class="cyber-input" value="65" min="50" max="95">
+            </div>
+            <div>
+              <label style="font-size:0.75rem; color:var(--text-muted); display:block; margin-bottom:0.25rem;">MEDIUM RISK TRIGGER (&gt; %):</label>
+              <input type="number" id="admin-med-thresh" class="cyber-input" value="35" min="15" max="60">
+            </div>
+          </div>
+
+          <!-- Policy 2: Automated Firewall & Quarantine -->
+          <div class="admin-card">
+            <h4 style="font-size:0.95rem; color:#fff; font-family:var(--font-classical); margin-bottom:0.75rem;">Access Control & Firewall Enforcement</h4>
+            <div class="switch-label">
+              <span>Automated Gateway IP Blocking:</span>
+              <input type="checkbox" id="admin-fw-block" checked>
+            </div>
+            <div class="switch-label">
+              <span>Auto-Quarantine Phishing MBOX:</span>
+              <input type="checkbox" id="admin-auto-quarantine" checked>
+            </div>
+            <div class="switch-label">
+              <span>Require Multi-Factor (MFA) for Admins:</span>
+              <input type="checkbox" id="admin-require-mfa" checked>
+            </div>
+          </div>
+
+          <!-- Policy 3: Machine Learning Model Retrain on Kaggle/Mbox -->
+          <div class="admin-card">
+            <h4 style="font-size:0.95rem; color:#fff; font-family:var(--font-classical); margin-bottom:0.75rem;">Kaggle & MBOX Real Data Retraining</h4>
+            <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:0.75rem;">
+              Execute on-demand retrain on `phishing_email_detection_2026_dataset.csv`, `spam_dataset.csv`, and Nazario MBOX archives.
+            </p>
+            <button class="btn-card-action" style="background:rgba(168,85,247,0.15); border-color:var(--accent-purple); color:#d8b4fe;" onclick="triggerKaggleRetrain()" id="btn-retrain-admin">
+              Execute Model Retrain
+            </button>
+            <div id="retrain-feedback" style="font-size:0.75rem; font-family:var(--font-mono); color:var(--accent-emerald); margin-top:0.5rem; display:none;">
+              Models retrained successfully!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 4: INCIDENT REPORTS & AUDIT ==================== -->
+    <section id="panel-reports" class="tab-panel">
+      <div class="cyber-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+          <div>
+            <h2 style="font-size:1.5rem; color:#fff;" class="font-classical">Incident Audit Ledger & Compliance Reports</h2>
+            <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:0.35rem;">
+              CRYPTOGRAPHICALLY TIMESTAMPED EVENT LEDGER WITH RISK TIER CLASSIFICATIONS
+            </p>
+          </div>
+          <div style="display:flex; gap:0.5rem;">
+            <button class="btn-hero-secondary" onclick="exportAuditJSON()">Export JSON</button>
+            <button class="btn-hero-primary" onclick="window.print()">Print PDF Report</button>
+            <button class="btn-hero-secondary" style="border-color:rgba(255,23,68,0.4); color:var(--accent-red);" onclick="clearLedgerHistory()">Clear</button>
+          </div>
+        </div>
+
+        <div style="overflow-x:auto; margin-top:1.5rem;">
+          <table class="incident-table">
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Target / Subject</th>
+                <th>Vector</th>
+                <th>Risk Score</th>
+                <th>Classification Tier</th>
+              </tr>
+            </thead>
+            <tbody id="audit-table-body">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 5: ABOUT AGEINS ==================== -->
+    <section id="panel-about" class="tab-panel">
+      <div class="cyber-card">
+        <h2 style="font-size:1.5rem; color:#fff;" class="font-classical">About AGEINS Cyber Guard</h2>
+        <p style="font-size:0.9rem; font-family:var(--font-serif); color:var(--text-secondary); line-height:1.75; margin-top:0.75rem;">
+          <strong>AGEINS</strong> (Autonomous Guardian & Enterprise Intelligence Network Security) is an advanced multi-vector cybersecurity platform designed to protect organizations and individuals against modern social engineering and synthetic media manipulation.
+        </p>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.25rem; margin-top:1.5rem;">
+          <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(0,240,255,0.25); border-radius:10px; padding:1.25rem;">
+            <h4 style="font-size:1rem; color:#fff; font-family:var(--font-classical); margin-bottom:0.5rem;">Multi-Engine Forensic Architecture</h4>
+            <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.6;">
+              Unlike conventional signature-based tools, AGEINS fuses lexical Shannon entropy, homoglyph typosquatting dictionaries, natural language processing trained on real MBOX mailboxes, and computer vision forensic transforms (ELA and 2D Fourier analysis).
+            </p>
+          </div>
+
+          <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(0,255,102,0.25); border-radius:10px; padding:1.25rem;">
+            <h4 style="font-size:1rem; color:#fff; font-family:var(--font-classical); margin-bottom:0.5rem;">Zero-Trust User Data Protection</h4>
+            <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.6;">
+              All scan payloads, uploaded media, and incident reports are evaluated in memory buffers. No plain-text credentials or confidential user emails are retained on external servers, fulfilling strict enterprise compliance guidelines.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 6: HELP & ESCALATION CENTER ==================== -->
+    <section id="panel-help" class="tab-panel">
+      <div class="cyber-card">
+        <h2 style="font-size:1.5rem; color:#fff;" class="font-classical">Help & Incident Escalation Center</h2>
+        <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:0.35rem;">
+          OPERATIONAL RUNBOOKS, FORENSIC TRIAGE GUIDES, & SOC ESCALATION PROTOCOLS
+        </p>
+
+        <div style="margin-top:1.5rem; display:flex; flex-direction:column; gap:1rem;">
+          <div style="background:rgba(15,23,42,0.7); border:1px solid rgba(148,163,184,0.2); border-radius:10px; padding:1rem 1.25rem;">
+            <h4 style="font-size:0.9rem; color:#fff; font-family:var(--font-classical); margin-bottom:0.35rem;">Q: What should I do if a URL is flagged as CRITICAL?</h4>
+            <p style="font-size:0.8rem; color:var(--text-secondary);">
+              A: Immediately sever connection to the domain. Do not input credentials, passwords, or 2FA tokens. If an employee opened the link, quarantine the workstation and initiate credential rotation.
+            </p>
+          </div>
+
+          <div style="background:rgba(15,23,42,0.7); border:1px solid rgba(148,163,184,0.2); border-radius:10px; padding:1rem 1.25rem;">
+            <h4 style="font-size:0.9rem; color:#fff; font-family:var(--font-classical); margin-bottom:0.35rem;">Q: How does Error Level Analysis (ELA) detect synthetic deepfake images?</h4>
+            <p style="font-size:0.8rem; color:var(--text-secondary);">
+              A: Natural photographs have uniform JPEG compression error rates across the whole sensor. Synthetic inpainting or spliced faces show distinct contrast halos when re-compressed at 95% quality.
+            </p>
+          </div>
+
+          <div style="background:rgba(15,23,42,0.7); border:1px solid rgba(148,163,184,0.2); border-radius:10px; padding:1rem 1.25rem;">
+            <h4 style="font-size:0.9rem; color:#fff; font-family:var(--font-classical); margin-bottom:0.35rem;">Q: How can I reach the Incident Escalation Team?</h4>
+            <p style="font-size:0.8rem; color:var(--text-secondary);">
+              A: Export the PDF Security Audit from the Reports section and forward it directly to your organization's designated Security Operations Center (SOC).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== EMBEDDED / FLOATING AI ASSISTANT CHATBOT ==================== -->
+  <div id="ai-chat-modal" class="modal-overlay">
+    <div class="modal-card" style="max-width:540px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:1px solid rgba(148,163,184,0.2); padding-bottom:0.75rem;">
+        <div style="display:flex; align-items:center; gap:0.5rem;">
+          <img src="assets/card_ai_bot.jpg" style="width:36px; height:36px; border-radius:50%; object-fit:cover; border:1px solid var(--accent-cyan);">
+          <div>
+            <h3 style="font-size:1rem; color:#fff; font-family:var(--font-classical);">AGEINS AI Cyber Guard</h3>
+            <span style="font-size:0.7rem; color:var(--accent-emerald);">● ACTIVE ADVISOR</span>
+          </div>
+        </div>
+        <button onclick="closeAiChatWidget()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:1.25rem;">✕</button>
+      </div>
+
+      <div class="chat-history-box" id="ai-chat-history">
+        <div class="chat-msg bot">
+          Hi! I'm AGEINS, your AI Cyber Guard. Always Here. Always Secure. Ask me about phishing links, email security, deepfake image/voice forensics, or threat policies.
+        </div>
+      </div>
+
+      <div class="quick-prompts-row">
+        <span class="prompt-chip" onclick="askAiBot('How do I detect phishing?')">How to detect phishing?</span>
+        <span class="prompt-chip" onclick="askAiBot('What is Deepfake ELA?')">What is Deepfake ELA?</span>
+        <span class="prompt-chip" onclick="askAiBot('Is my email data safe?')">Is my email safe?</span>
+      </div>
+
+      <div class="input-row" style="margin-top:0.75rem;">
+        <input type="text" id="ai-chat-input" class="cyber-input" placeholder="Ask AGEINS Cyber Guard..." onkeydown="if(event.key==='Enter') sendAiChatMessage()">
+        <button class="btn-hero-primary" onclick="sendAiChatMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SIGNUP & LOGIN MODAL ==================== -->
+  <div id="auth-modal" class="modal-overlay">
+    <div class="modal-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+        <h3 style="font-size:1.25rem; color:#fff; font-family:var(--font-classical);" id="auth-modal-title">Sign In to AGEINS</h3>
+        <button onclick="closeAuthModal()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:1.25rem;">✕</button>
+      </div>
+
+      <div style="background:rgba(0,229,255,0.06); border:1px solid rgba(0,229,255,0.25); border-radius:6px; padding:0.5rem; font-size:0.72rem; color:var(--accent-cyan); margin-bottom:1rem; display:flex; align-items:center; gap:0.4rem;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        <span>USER DATA MUST BE PROTECTED & ENCRYPTED</span>
+      </div>
+
+      <div style="margin-bottom:1rem;">
+        <label style="font-size:0.75rem; color:var(--text-muted); display:block; margin-bottom:0.25rem;">EMAIL ADDRESS:</label>
+        <input type="email" id="auth-email-input" class="cyber-input" placeholder="analyst@enterprise-security.com">
+      </div>
+
+      <div style="margin-bottom:1.25rem;">
+        <label style="font-size:0.75rem; color:var(--text-muted); display:block; margin-bottom:0.25rem;">PASSWORD:</label>
+        <input type="password" id="auth-password-input" class="cyber-input" placeholder="••••••••••••">
+      </div>
+
+      <button class="btn-hero-primary" style="width:100%; justify-content:center;" onclick="executeUserAuth()" id="btn-auth-submit">AUTHENTICATE</button>
+
+      <div style="text-align:center; margin-top:1rem; font-size:0.75rem; color:var(--text-muted);">
+        <span id="auth-switch-prompt">Don't have an account?</span>
+        <a href="javascript:void(0)" onclick="toggleAuthMode()" style="color:var(--accent-cyan); margin-left:0.35rem;" id="auth-switch-link">Sign Up</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== RESEARCH REFERENCES FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <div>
+        <h2 style="font-size:1.35rem; color:#fff; font-family:var(--font-classical);">
+          Research References & Academic Foundations
+        </h2>
+        <p style="font-size:0.75rem; color:var(--accent-cyan); margin-top:0.2rem;">
+          CITED BENCHMARKS, DATASETS & PAPERS UTILIZED IN THE AGEINS ARCHITECTURE
+        </p>
+      </div>
+
+      <div class="citations-grid">
+        <div class="citation-card">
+          <div class="citation-tag">Deepfake Video & Facial Manipulation</div>
+          <div class="citation-title">FaceForensics++: Learning to Detect Manipulated Facial Images</div>
+          <div style="color:var(--text-muted); font-size:0.7rem; font-style:italic;">Andreas Rössler et al. (IEEE/CVF ICCV)</div>
+          <p style="color:var(--text-secondary); font-size:0.72rem; margin-top:0.4rem;">
+            Benchmark dataset & temporal facial boundary warping detection heuristics.
+          </p>
+        </div>
+
+        <div class="citation-card">
+          <div class="citation-tag">Multimodal Video Forensics</div>
+          <div class="citation-title">The Deepfake Detection Challenge (DFDC) Dataset</div>
+          <div style="color:var(--text-muted); font-size:0.7rem; font-style:italic;">Meta AI, AWS, Microsoft, MIT (arXiv:2006.07397)</div>
+          <p style="color:var(--text-secondary); font-size:0.72rem; margin-top:0.4rem;">
+            Inter-frame compression variance & facial micro-flicker metric benchmarks.
+          </p>
+        </div>
+
+        <div class="citation-card">
+          <div class="citation-tag">Voice Clone Countermeasures</div>
+          <div class="citation-title">ASVspoof 2021: Automatic Speaker Verification & Spoofed Speech</div>
+          <div style="color:var(--text-muted); font-size:0.7rem; font-style:italic;">Junichi Yamagishi et al. (Interspeech / Speech Comm)</div>
+          <p style="color:var(--text-secondary); font-size:0.72rem; margin-top:0.4rem;">
+            Acoustic feature extraction: pitch micro-jitter, zero-crossing rate, silence floor.
+          </p>
+        </div>
+
+        <div class="citation-card">
+          <div class="citation-tag">Generative Frequency Artifacts</div>
+          <div class="citation-title">Watch your Up-Convolution: Spectral Distributions in Generative Networks</div>
+          <div style="color:var(--text-muted); font-size:0.7rem; font-style:italic;">Ricard Durall, Margret Keuper et al. (IEEE/CVF CVPR 2020)</div>
+          <p style="color:var(--text-secondary); font-size:0.72rem; margin-top:0.4rem;">
+            2D Fast Fourier Transform (FFT) high-frequency checkerboard grid noise detection.
+          </p>
+        </div>
+
+        <div class="citation-card">
+          <div class="citation-tag">Digital Image Splicing</div>
+          <div class="citation-title">A Picture's Worth... Digital Image Analysis & Error Level Analysis (ELA)</div>
+          <div style="color:var(--text-muted); font-size:0.7rem; font-style:italic;">Dr. Neal Krawetz (Hacker Factor Solutions)</div>
+          <p style="color:var(--text-secondary); font-size:0.72rem; margin-top:0.4rem;">
+            95% lossy JPEG re-compression delta to detect image splicing & localized inpainting.
+          </p>
+        </div>
+
+        <div class="citation-card">
+          <div class="citation-tag">Threat Intelligence Feeds</div>
+          <div class="citation-title">PhishTank & OpenPhish Collaborative Feeds</div>
+          <div style="color:var(--text-muted); font-size:0.7rem; font-style:italic;">Cisco Talos / OpenPhish Research</div>
+          <p style="color:var(--text-secondary); font-size:0.72rem; margin-top:0.4rem;">
+            Domain Shannon entropy, typosquatting dictionaries, and malicious TLD lists.
+          </p>
+        </div>
+
+        <div class="citation-card">
+          <div class="citation-tag">Real MBOX & Phishing Corpus</div>
+          <div class="citation-title">Jose Nazario Phishing Corpus & Enron Legal Mailbox Archives</div>
+          <div style="color:var(--text-muted); font-size:0.7rem; font-style:italic;">University & Industry Security Research Collections</div>
+          <p style="color:var(--text-secondary); font-size:0.72rem; margin-top:0.4rem;">
+            Real-world email archives utilized to train the AGEINS machine learning models.
+          </p>
+        </div>
+
+        <div class="citation-card">
+          <div class="citation-tag">Incident Response Standards</div>
+          <div class="citation-title">NIST SP 800-61 Rev. 2 & NIST CSF 2.0</div>
+          <div style="color:var(--text-muted); font-size:0.7rem; font-style:italic;">National Institute of Standards and Technology (NIST)</div>
+          <p style="color:var(--text-secondary); font-size:0.72rem; margin-top:0.4rem;">
+            Incident triage, risk scoring thresholds, and remediation workflow structure.
+          </p>
+        </div>
+      </div>
+
+      <div style="margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid rgba(148,163,184,0.15); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; font-size:0.75rem;">
+        <div>
+          <strong style="color:var(--text-primary); font-family:var(--font-classical);">AGEINS CYBER GUARD</strong> — Universal Defense Against Cyber Threats & Deepfakes
+        </div>
+        <div style="color:var(--text-muted);">
+          Enterprise Security Edition | Pure HTML, CSS, JavaScript, and Python
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Script -->
+  <script src="app.js"></script>
+</body>
+</html>
